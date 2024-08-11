@@ -22,7 +22,7 @@ header = dmc.AppShellHeader(
         children=[
             dmc.Stack(
                 justify="center",
-                h=70,
+                h="100%",
                 children=dmc.Grid(
                     justify="space-between",
                     children=[
@@ -30,7 +30,8 @@ header = dmc.AppShellHeader(
                             dmc.Group(
                                 [
                                     dmc.Anchor(
-                                        "TTT", size="xl", href="/", underline=False
+                                        dmc.Title("TTT", order=1, style={"color": "black"}),
+                                        size="xl", href="/", underline=False
                                     ),
                                 ]
                             ),
@@ -40,7 +41,7 @@ header = dmc.AppShellHeader(
                             span="auto",
                             children=dmc.Group(
                                 justify="flex-end",
-                                h=31,
+                                h="100%",
                                 gap="xl",
                                 children=[
                                     dmc.ActionIcon(

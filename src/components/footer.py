@@ -4,12 +4,25 @@ from dash import Dash, Input, Output, State, callback
 
 import dash_mantine_components as dmc
 
-footer = dmc.AppShellFooter(px=25,
+footer = dmc.AppShellFooter(
                 children=[
-                    dmc.Text(
-                        "© 2024 Temple Trading & Technology Club",
-                        ta="center"
+                    dmc.Stack(
+                        justify="center",
+                        h="100%",
+                        children=dmc.Grid(
+                            justify="center",
+                            align="center",
+                            children = [
+                                dmc.GridCol(
+                                    dmc.Text(
+                                        "© 2024 Temple Trading & Technology Club",
+                                        ta="center"
+                                    )
+                                )
+                            ]
+                        )
                     )
+
                 ]
             )
 

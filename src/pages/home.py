@@ -1,10 +1,12 @@
 # package imports
 import dash
-from dash import html, dcc, html, _dash_renderer
+from dash import html, _dash_renderer
 import dash_mantine_components as dmc
-import plotly.express as px
 
 import pandas as pd
+
+# utils
+from utils import performanceMetric
 
 # components
 from components.header import header
@@ -47,10 +49,12 @@ layout = dmc.MantineProvider(
                             [
                                 docUpload,
                                 dmc.Group(
-                                    align="flex-start",
+                                    align={"sm": "center"},
                                     children=[
-                                        create_performance_card("Sharpe Ratio", 5555),
-                                        create_performance_card("Maximum Drawdown", 123.00),
+                                        create_performance_card("Cumulative Return", 100 * df['cumulative_pnl'].iloc[-1] / 1-000-000),
+                                        create_performance_card("Sharpe Ratio", performanceMetric.calculate_sharpe_ratio(
+                                            df['cumulative_pnl'].diff(periods = 1) / df['total_value'])),
+                                        create_performance_card("Maximum Drawdown", performanceMetric.calculate_max_drawdown(df['total_value'])),
                                     ]
                                 ),
                                 html.Div(id='output-data-upload'),

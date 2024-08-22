@@ -19,11 +19,6 @@ dash.register_page(
     title='Home'
 )
 
-# daily PNL Graph
-df = pd.read_csv('../data/BuyandHold_EQL_DOLLAR_pnl.csv')
-
-data = df.to_dict(orient='records')
-
 layout = dmc.MantineProvider(
     forceColorScheme="light",
     id="mantine-provider",

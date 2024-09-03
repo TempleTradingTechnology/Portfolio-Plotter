@@ -70,6 +70,8 @@ def parse_contents(contents, filename, date):
 
     data = df.to_dict(orient='records')
 
+    print(df.columns)
+
     return html.Div([
         dmc.Title(f"File Name: {filename}", order=1),
         html.Br(),

@@ -23,6 +23,7 @@ docUpload = dcc.Upload(
             'Supported files: .xls, .csv'
         ])
     ]),
+    className='upload-box',
     style={
         'display': 'flex',
         'justify-content': 'center',
@@ -143,6 +144,7 @@ def parse_contents(contents, filename, date):
             Input('upload-data', 'contents'),
             State('upload-data', 'filename'),
             State('upload-data', 'last_modified'))
+            
 def update_output(list_of_contents, list_of_names, list_of_dates):
     if list_of_contents is not None:
         children = [

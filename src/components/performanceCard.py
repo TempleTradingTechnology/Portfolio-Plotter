@@ -5,11 +5,12 @@ from dash import Dash
 import dash_mantine_components as dmc
 
 
-def create_performance_card(title, number):
+def create_performance_card(title, number,
+        number_format_spec="{:.4f}"):
     return dmc.Card(
         children=[
             dmc.Text(title, size="xl", fw=600),
-            dmc.Title(f"{number:.4f}", order=1,  mt="md"),
+            dmc.Title(number_format_spec.format(number), order=1,  mt="md"),
         ],
         # bg="yellow.5",
         shadow="sm",

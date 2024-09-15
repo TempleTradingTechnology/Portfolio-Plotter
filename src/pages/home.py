@@ -30,7 +30,7 @@ layout = dmc.MantineProvider(
                     children=[
                         dmc.Stack(
                             [
-                                dmc.Title("Upload your *_pnl.csv file", order=1),
+                                dmc.Title("Upload your *_pnl.csv and *_trade_history.csv file", order=1),
                                 docUpload,
                                 html.Div(id='output-data-upload'),
                             ]

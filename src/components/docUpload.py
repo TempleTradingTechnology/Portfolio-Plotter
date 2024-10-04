@@ -90,6 +90,7 @@ def parse_contents(list_of_contents, list_of_names, list_of_dates):
                 'There was an error processing this file.'
             ])
 
+    pnl_df.fillna(0, inplace=True)
     pnl_data = pnl_df.to_dict(orient='records')
 
     return html.Div([
@@ -105,8 +106,10 @@ def parse_contents(list_of_contents, list_of_names, list_of_dates):
                     create_performance_card("Cumulative Return",
                     100 * pnl_df['cumulative_pnl'].iloc[-1] / 1000000,
                     number_format_spec="{:.0f}%"),
+
                     create_performance_card("Sharpe Ratio", performanceMetric.calculate_sharpe_ratio(
-                        pnl_df['cumulative_pnl'].diff(periods = 1) / pnl_df['total_value'])),
+                        pnl_df['cumulative_pnl'].diff(periods = 1) / pnl_df['total_value'] )),
+
                     create_performance_card("Maximum Drawdown", performanceMetric.calculate_max_drawdown(pnl_df['total_value'])),
                 ]
             ),

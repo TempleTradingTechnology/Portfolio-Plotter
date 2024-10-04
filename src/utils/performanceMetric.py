@@ -2,6 +2,7 @@
 import numpy as np
 
 def calculate_sharpe_ratio(daily_returns, risk_free_rate = 0):
+
     # Calculate average daily return
     avg_daily_return = np.mean(daily_returns)
 

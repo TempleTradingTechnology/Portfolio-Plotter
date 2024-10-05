@@ -209,7 +209,6 @@ def create_graph(df, key):
         for k, v in df.groupby(["Exit Year"])["PnL"]:
             data.append({"Exit Year": list(k)[0], "PnL": v.sum()})
 
-
     return dmc.BarChart(
         h=300,
         dataKey=key,

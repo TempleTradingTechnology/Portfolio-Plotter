@@ -29,7 +29,7 @@ header = dmc.AppShellHeader(
                         dmc.GridCol(
                             dmc.Group(
                                 [
-                                    dmc.Title("Temple Trading Technology", order=1)
+                                    dmc.Title("Portfolio Plotter", order=1)
                                 ]
                             ),
                             span="content",

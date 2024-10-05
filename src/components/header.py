@@ -29,10 +29,7 @@ header = dmc.AppShellHeader(
                         dmc.GridCol(
                             dmc.Group(
                                 [
-                                    dmc.Anchor(
-                                        dmc.Title("TTT", order=1, style={"color": "black"}),
-                                        size="xl", href="/", underline=False
-                                    ),
+                                    dmc.Title("Temple Trading Technology", order=1)
                                 ]
                             ),
                             span="content",

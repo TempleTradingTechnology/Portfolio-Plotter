@@ -1,6 +1,7 @@
 import dash
 from dash import html, dcc, html, dash_table, Input, Output, State, callback
 import dash_mantine_components as dmc
+import dash_loading_spinners as dls
 import pandas as pd
 import base64
 import datetime
@@ -15,16 +16,16 @@ TRADE_HISTORY_HEADER = "Ticker,Shares With Sign,Entry Date,Entry Price,Exit Date
 
 docUpload = dcc.Upload(
     id='upload-data',
-    children=html.Div([
-        dmc.Flex([
-            dmc.Text('Click Here ', size="lg", fw=700),
-            dmc.Text('to upload your files or drag and drop.', size="lg", fw=500),
-        ],
-        gap="xs"),
-        html.Div([
-            'Supported files: .xls, .csv'
-        ])
-    ]),
+    children= html.Div([
+            dmc.Flex([
+                dmc.Text('Click Here ', size="lg", fw=700),
+                dmc.Text('to upload your files or drag and drop.', size="lg", fw=500),
+            ],
+            gap="xs"),
+            html.Div([
+                'Supported files: .xls, .csv'
+            ])
+        ]),
     className='upload-box',
     style={
         'display': 'flex',
@@ -93,7 +94,7 @@ def parse_contents(list_of_contents, list_of_names, list_of_dates):
     pnl_df.fillna(0, inplace=True)
     pnl_data = pnl_df.to_dict(orient='records')
 
-    return html.Div([
+    return (html.Div([
         dmc.Title(f"File Name: {filename}", order=1),
         html.Br(),
         dmc.Title(f"Performance Metrics", order=1),
@@ -110,7 +111,8 @@ def parse_contents(list_of_contents, list_of_names, list_of_dates):
                     create_performance_card("Sharpe Ratio", performanceMetric.calculate_sharpe_ratio(
                         pnl_df['cumulative_pnl'].diff(periods = 1) / pnl_df['total_value'] )),
 
-                    create_performance_card("Maximum Drawdown", performanceMetric.calculate_max_drawdown(pnl_df['total_value'])),
+                    create_performance_card("Maximum Drawdown",
+                    performanceMetric.calculate_max_drawdown(pnl_df['total_value']), number_format_spec="{:.4%}" ),
                 ]
             ),
         html.Br(),
@@ -178,7 +180,7 @@ def parse_contents(list_of_contents, list_of_names, list_of_dates):
             value="Ticker"
         ),
         ]
-    )
+    ))
 
 @callback(Output('output-data-upload', 'children'),
             Input('upload-data', 'contents'),

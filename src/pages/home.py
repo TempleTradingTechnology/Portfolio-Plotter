@@ -2,6 +2,7 @@
 import dash
 from dash import html, _dash_renderer
 import dash_mantine_components as dmc
+import dash_loading_spinners as dls
 
 import pandas as pd
 
@@ -9,6 +10,8 @@ import pandas as pd
 from components.header import header
 from components.docUpload import docUpload
 from components.footer import footer
+
+
 
 _dash_renderer._set_react_version("18.2.0")
 
@@ -32,13 +35,19 @@ layout = dmc.MantineProvider(
                             [
                                 dmc.Title("Upload your *_pnl.csv and *_trade_history.csv file", order=1),
                                 docUpload,
-                                html.Div(id='output-data-upload'),
+                                dls.Rise(
+                                    html.Div(id='output-data-upload',
+                                    style={
+                                    'justify-content': 'center',
+                                    'align-items': 'center',
+                                    'height': '250px'}),
+                                    color = "#c76067"
+                                )
                             ]
                         ),
                     ]),
-                    footer
+                footer
             ],
-            # bg="#f8f9fa",
             padding="xl",
             zIndex=1400,
             header={"height": 100, "display":"flex", "alignItems":"center"},

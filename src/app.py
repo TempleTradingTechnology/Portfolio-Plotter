@@ -9,9 +9,9 @@ import dash_mantine_components as dmc
 from flask import Flask
 import os
 
+
 # local imports
 from utils.settings import APP_HOST, APP_PORT, APP_DEBUG, DEV_TOOLS_PROPS_CHECK
-
 
 server = Flask(__name__)
 app = dash.Dash( __name__,
@@ -41,7 +41,7 @@ def serve_layout():
 if __name__ == '__main__':
     app.run_server(
         host=APP_HOST,
-        # port=APP_PORT,
+        port=APP_PORT,
         debug=APP_DEBUG,
         dev_tools_props_check=DEV_TOOLS_PROPS_CHECK
     )
